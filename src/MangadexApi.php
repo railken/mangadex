@@ -24,11 +24,21 @@ class MangadexApi extends MangadexReader
     /**
      * Perform a search.
      *
-     * @return MangadexSearchBuilder
+     * @return API\Searcher\Builder
      */
     public function search()
     {
         return new API\Searcher\Builder($this);
+    }
+
+    /**
+     * Search last releases.
+     *
+     * @return API\Releases\Builder
+     */
+    public function releases()
+    {
+        return new API\Releases\Builder($this);
     }
 
     /**
