@@ -124,7 +124,7 @@ class Builder
     /**
      * Retrieve name.
      *
-     * @return string
+     * @return \Railken\Bag
      */
     public function getName()
     {
@@ -170,7 +170,7 @@ class Builder
     /**
      * Retrieve author.
      *
-     * @return string
+     * @return \Railken\Bag
      */
     public function getAuthor()
     {
@@ -195,7 +195,7 @@ class Builder
     /**
      * Retrieve artist.
      *
-     * @return string
+     * @return \Railken\Bag
      */
     public function getArtist()
     {
@@ -234,8 +234,6 @@ class Builder
      */
     public function status($status)
     {
-        $this->throwExceptionInvalidValue(Exceptions\BuilderInvalidTagsValueException::class, $status, $this->getAvailableStatus());
-
         $this->status
             ->set('value', array_search($status, $this->getAvailableStatus()));
 
@@ -245,7 +243,7 @@ class Builder
     /**
      * Retrieve status.
      *
-     * @return string
+     * @return \Railken\Bag
      */
     public function getStatus()
     {
@@ -257,7 +255,7 @@ class Builder
      */
     public function excludeTags($tags)
     {
-        $this->throwExceptionInvalidValue(Exceptions\BuilderInvalidGenresValueException::class, $tags, $this->getAvailableTags());
+        $this->throwExceptionInvalidValue(Exceptions\BuilderInvalidTagsValueException::class, $tags, $this->getAvailableTags());
 
         $this->excludeTags
             ->set('value', Collection::make($tags)->map(function ($tag) {
@@ -278,7 +276,7 @@ class Builder
     /**
      * Send request.
      *
-     * @return Response
+     * @return \Railken\Bag
      */
     public function get()
     {

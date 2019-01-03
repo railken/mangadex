@@ -31,11 +31,11 @@ class Builder
     }
 
     /**
-     * @param int $uid
+     * @param string $uid
      *
      * @return $this
      */
-    public function uid(int $uid)
+    public function uid(string $uid)
     {
         $this->uid
             ->set('value', $uid);
@@ -54,7 +54,7 @@ class Builder
     /**
      * Send request.
      *
-     * @return Response
+     * @return \Railken\Bag
      */
     public function get()
     {

@@ -8,6 +8,6 @@ class BuilderInvalidFilterException extends InvalidArgumentException
 {
     public function __construct($field, $value = null, $suggestions = [])
     {
-        return parent::__construct($field, $value, $suggestions);
+        parent::__construct($field, $value, $suggestions);
     }
 }

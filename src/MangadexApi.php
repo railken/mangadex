@@ -5,23 +5,6 @@ namespace Railken\Mangadex;
 class MangadexApi extends MangadexReader
 {
     /**
-     * Base url Mangadex.
-     *
-     * @var string
-     */
-    protected $url = 'https://mangadex.org/';
-
-    /**
-     * Retrieve base url.
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
      * Perform a search.
      *
      * @return API\Searcher\Builder

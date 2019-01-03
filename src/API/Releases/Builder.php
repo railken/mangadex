@@ -59,7 +59,7 @@ class Builder
     /**
      * Send request.
      *
-     * @return Response
+     * @return \Railken\Bag
      */
     public function get()
     {

@@ -8,6 +8,6 @@ class BuilderInvalidTagsValueException extends InvalidArgumentException
 {
     public function __construct($value = null, $suggestions = [])
     {
-        return parent::__construct('tags', implode(', ', $value), $suggestions);
+        parent::__construct('tags', implode(', ', $value), $suggestions);
     }
 }

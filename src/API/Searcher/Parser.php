@@ -27,8 +27,9 @@ class Parser
     /**
      * Parse the response.
      *
-     * @return string                 $html
-     * @return MangadexSearchResponse
+     * @param string $html
+     *
+     * @return \Railken\Bag
      */
     public function parse($html)
     {
@@ -52,7 +53,7 @@ class Parser
 
         $bag->set('page', $node->filter('.pagination > li.active a')->text());
 
-        $query = parse_url($node->filter('.pagination > li:last-of-type a')->attr('href'), PHP_URL_QUERY);
+        $query = parse_url((string) $node->filter('.pagination > li:last-of-type a')->attr('href'), PHP_URL_QUERY);
         parse_str($query, $params);
         $bag->set('pages', $params['p']);
 

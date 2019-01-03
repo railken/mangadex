@@ -31,7 +31,7 @@ class Parser
      * @param string $html
      * @param string $api
      *
-     * @return Bag
+     * @return \Railken\Bag
      */
     public function parse($html, $api)
     {
@@ -45,7 +45,7 @@ class Parser
         $bag
             ->set('url', $node->filter("meta[property='og:url']")->attr('content'))
             ->set('uid', basename($bag->get('url')))
-            ->set('name', trim($node->filter('.card-header')->text()))
+            ->set('name', trim((string) $node->filter('.card-header')->text()))
             ->set('cover', 'https://mangadex.org'.$card->filter('.col-xl-3 img')->attr('src'))
             ->set('description', html_entity_decode($api->manga->description))
             ->set('author', $api->manga->author)
@@ -65,7 +65,7 @@ class Parser
             ->set('aliases', $card->filter('.col-xl-9 > div:nth-of-type(1) > .col-lg-9 .list-inline-item')->each(function ($node) {
                 return trim($node->text());
             }))
-            ->set('rating', trim($node->filter('.col-xl-9 > div:nth-of-type(8) > .col-lg-9 .list-inline-item:first-child > .text-primary')->text()))
+            ->set('rating', trim((string) $node->filter('.col-xl-9 > div:nth-of-type(8) > .col-lg-9 .list-inline-item:first-child > .text-primary')->text()))
             ->set('status', $card->filter('.col-xl-9 > div:nth-of-type(9) > .col-lg-9')->text())
             ->set('links', (array) $api->manga->links)
             ->set('chapters', Collection::make($api->chapter)->map(function ($value, $key) {

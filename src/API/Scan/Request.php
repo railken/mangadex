@@ -24,9 +24,9 @@ class Request
     /**
      * Send the request for the research.
      *
-     * @param MangadexSearchBuilder $builder
+     * @param Builder $builder
      *
-     * @return MangadexSearchResponse
+     * @return \Illuminate\Support\Collection
      */
     public function send(Builder $builder)
     {

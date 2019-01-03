@@ -28,13 +28,11 @@ class Parser
      *
      * @param string $api
      *
-     * @return Bag
+     * @return \Illuminate\Support\Collection
      */
     public function parse($api)
     {
         $api = json_decode($api);
-
-        $bag = new Bag();
 
         return Collection::make((array) $api->page_array)->map(function ($scan) use ($api) {
             $bag = new Bag();
@@ -47,7 +45,5 @@ class Parser
 
             return $bag;
         });
-
-        return $bag;
     }
 }

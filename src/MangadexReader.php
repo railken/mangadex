@@ -8,6 +8,13 @@ use Symfony\Component\Cache\Simple\FilesystemCache;
 abstract class MangadexReader
 {
     /**
+     * Base url Mangadex.
+     *
+     * @var string
+     */
+    protected $url = 'https://mangadex.org/';
+
+    /**
      * @var \GuzzleHttp\Client
      */
     protected $client;
@@ -32,11 +39,21 @@ abstract class MangadexReader
     }
 
     /**
+     * Retrieve base url.
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
      * Send a request.
      *
-     * @param string $method
-     * @param string $url
-     * @param array  $data
+     * @param string       $method
+     * @param string       $url
+     * @param array|string $data
      */
     public function request($method, $url, $data, $retry = 2)
     {
@@ -49,7 +66,6 @@ abstract class MangadexReader
 
         switch ($method) {
             case 'POST': case 'PUT':
-
                 if (is_string($data)) {
                     $params['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
                     $params['body'] = $data;
