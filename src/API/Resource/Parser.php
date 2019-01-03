@@ -27,13 +27,50 @@ class Parser
     /**
      * Parse the response.
      *
-     * @return string                 $html
-     * @return MangadexSearchResponse
+     * @param string                 $html
+     * @param string $api
+     *
+     * @return Bag
      */
-    public function parse($html)
+    public function parse($html, $api)
     {
-        $data = json_decode($html, true);
-        $data['manga']['chapters'] = $data['chapter'];
-        return new Bag($data['manga']);
+        $api = json_decode($api);
+
+        $node = HtmlPageCrawler::create($html);
+
+        $card = $node->filter('.card-body > .row.edit');
+
+        $bag = new Bag();
+        $bag
+            ->set('url', $node->filter("meta[property='og:url']")->attr('content'))
+            ->set('uid', basename($bag->get('url')))
+            ->set('name', trim($node->filter('.card-header')->text()))
+            ->set('cover', "https://mangadex.org" . $card->filter('.col-xl-3 img')->attr('src'))
+            ->set('description', html_entity_decode($api->manga->description))
+            ->set('author', $api->manga->author)
+            ->set('artist', $api->manga->artist)
+            ->set('demographics', $card->filter('.col-xl-9 > div:nth-of-type(4) > .col-lg-9 .badge')->each(function ($node) {
+                return trim($node->text());
+            }))
+            ->set('formats', $card->filter('.col-xl-9 > div:nth-of-type(5) > .col-lg-9 .badge')->each(function ($node) {
+                return trim($node->text());
+            }))
+            ->set('genres', $card->filter('.col-xl-9 > div:nth-of-type(6) > .col-lg-9 .badge')->each(function ($node) {
+                return trim($node->text());
+            }))
+            ->set('themes', $card->filter('.col-xl-9 > div:nth-of-type(7) > .col-lg-9 .badge')->each(function ($node) {
+                return trim($node->text());
+            }))
+            ->set('aliases', $card->filter('.col-xl-9 > div:nth-of-type(1) > .col-lg-9 .list-inline-item')->each(function ($node) {
+                return trim($node->text());
+            }))
+            ->set('rating', trim($node->filter('.col-xl-9 > div:nth-of-type(8) > .col-lg-9 .list-inline-item:first-child > .text-primary')->text()))
+            ->set('status', $card->filter('.col-xl-9 > div:nth-of-type(9) > .col-lg-9')->text())
+            ->set('links', (array) $api->manga->links)
+            ->set('chapters', Collection::make($api->chapter))
+            ;
+        return $bag;
+
+        return $bag;
     }
 }

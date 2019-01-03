@@ -10,6 +10,10 @@ class ResourceTest extends TestCase
     {
         $api = new MangadexApi();
         $result = $api->resource(31477)->get();
-        $this->assertEquals('Solo Leveling', $result->title);
+
+        print_r($result);
+
+        $this->assertEquals('Solo Leveling', $result->name);
+        $this->assertTrue($result->chapters->count() > 0);
     }
 }
