@@ -42,12 +42,14 @@ class MangadexApi extends MangadexReader
     }
 
     /**
-     * Retrieve genres available on Mangadex.
+     * Retrieve information about a manga
      *
-     * @return array
+     * @param string $uid
+     *
+     * @return API\Resource\Builder
      */
-    public function getGenres()
+    public function resource($uid)
     {
-        return $this->genres;
+        return (new API\Resource\Builder($this))->uid($uid);
     }
 }
