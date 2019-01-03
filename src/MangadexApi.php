@@ -52,4 +52,16 @@ class MangadexApi extends MangadexReader
     {
         return (new API\Resource\Builder($this))->uid($uid);
     }
+
+    /**
+     * Scan a chapter
+     *
+     * @param string $uid
+     *
+     * @return API\Scan\Builder
+     */
+    public function scan($uid)
+    {
+        return (new API\Scan\Builder($this))->uid($uid);
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Railken\Bag;
 use Railken\Mangadex\MangadexApi;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
+use DateTime;
 
 class Parser
 {
@@ -67,7 +68,14 @@ class Parser
             ->set('rating', trim($node->filter('.col-xl-9 > div:nth-of-type(8) > .col-lg-9 .list-inline-item:first-child > .text-primary')->text()))
             ->set('status', $card->filter('.col-xl-9 > div:nth-of-type(9) > .col-lg-9')->text())
             ->set('links', (array) $api->manga->links)
-            ->set('chapters', Collection::make($api->chapter))
+            ->set('chapters', Collection::make($api->chapter)->map(function($value, $key) {
+                $value->id = $key;
+                $value->updated_at = (new DateTime())->setTimestamp($value->timestamp);
+                return $value;
+            })->filter(function($chapter) {
+                return $chapter->updated_at <= new DateTime();
+            }))
+
             ;
         return $bag;
 
