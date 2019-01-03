@@ -20,17 +20,17 @@ composer require railken/mangadex
 
 
 ```php
-	use Railken\Mangadex\MangadexApi;
+use Railken\Mangadex\MangadexApi;
 
-    $api = new MangadexApi();
+$api = new MangadexApi();
 
-    $result = $api
-        ->search()
-        ->includeTags(['Action', 'Adventure'])
-        ->excludeTags(['Samurai'])
-        ->status('Ongoing')
-        ->name('a')
-        ->artist('a')
-        ->page(2)
-        ->get();
+$result = $api
+    ->search()
+    ->includeTags(['Action', 'Adventure'])
+    ->excludeTags(['Samurai'])
+    ->status('Ongoing')
+    ->name('a')
+    ->artist('a')
+    ->page(2)
+    ->get();
 ```
