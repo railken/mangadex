@@ -16,6 +16,5 @@ class ScanTest extends TestCase
         $api->scan($chapter->id)->get()->each(function ($scan) {
             file_get_contents($scan->scan);
         });
-
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Railken\Mangadex\API\Releases;
 
-use Illuminate\Support\Collection;
 use Railken\Bag;
 use Railken\Mangadex\Concerns\MangadexStatus;
 use Railken\Mangadex\Concerns\MangadexTags;

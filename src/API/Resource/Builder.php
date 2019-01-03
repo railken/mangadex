@@ -2,15 +2,11 @@
 
 namespace Railken\Mangadex\API\Resource;
 
-use Illuminate\Support\Collection;
 use Railken\Bag;
-use Railken\Mangadex\Concerns\MangadexStatus;
-use Railken\Mangadex\Concerns\MangadexTags;
 use Railken\Mangadex\MangadexApi;
 
 class Builder
 {
-
     /**
      * @var MangadexApi
      */

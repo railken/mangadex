@@ -5,7 +5,6 @@ namespace Railken\Mangadex\API\Scan;
 use Illuminate\Support\Collection;
 use Railken\Bag;
 use Railken\Mangadex\MangadexApi;
-use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 class Parser
 {
@@ -37,14 +36,14 @@ class Parser
 
         $bag = new Bag();
 
-        return Collection::make((array) $api->page_array)->map(function($scan) use($api) {
+        return Collection::make((array) $api->page_array)->map(function ($scan) use ($api) {
             $bag = new Bag();
 
             $host = parse_url($api->server, PHP_URL_HOST);
 
-            $baseUrl = $host ? $api->server : "https://mangadex.org".$api->server;
+            $baseUrl = $host ? $api->server : 'https://mangadex.org'.$api->server;
 
-            $bag->set('scan', sprintf("%s%s/%s", $baseUrl, $api->hash, $scan));
+            $bag->set('scan', sprintf('%s%s/%s', $baseUrl, $api->hash, $scan));
 
             return $bag;
         });

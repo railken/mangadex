@@ -41,7 +41,6 @@ class Parser
 
             $title = $node;
 
-
             return $bag
                 ->set('uid', basename(dirname($title->attr('href'))))
                 ->set('name', html_entity_decode(trim($title->html())))
@@ -52,7 +51,7 @@ class Parser
 
         $bag->set('page', $node->filter('.pagination > li.active a')->text());
 
-        $bag->set('pages', str_replace("/", "", str_replace("updates", "", $node->filter('.pagination > li:last-of-type a')->attr('href'))));
+        $bag->set('pages', str_replace('/', '', str_replace('updates', '', $node->filter('.pagination > li:last-of-type a')->attr('href'))));
 
         return $bag;
     }

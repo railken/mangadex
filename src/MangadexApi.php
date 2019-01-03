@@ -42,7 +42,7 @@ class MangadexApi extends MangadexReader
     }
 
     /**
-     * Retrieve information about a manga
+     * Retrieve information about a manga.
      *
      * @param string $uid
      *
@@ -54,7 +54,7 @@ class MangadexApi extends MangadexReader
     }
 
     /**
-     * Scan a chapter
+     * Scan a chapter.
      *
      * @param string $uid
      *

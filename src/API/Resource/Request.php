@@ -30,12 +30,12 @@ class Request
      */
     public function send(Builder $builder)
     {
-        $api = $this->manager->request('GET', "/api", [
-            'id' => $builder->getUid()->get('value'),
-            'type' => 'manga'
+        $api = $this->manager->request('GET', '/api', [
+            'id'   => $builder->getUid()->get('value'),
+            'type' => 'manga',
         ]);
 
-        $html = $this->manager->request('GET', sprintf("/title/%s", $builder->getUid()->get('value')), []);
+        $html = $this->manager->request('GET', sprintf('/title/%s', $builder->getUid()->get('value')), []);
 
         $parser = new Parser($this->manager);
 

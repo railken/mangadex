@@ -30,9 +30,9 @@ class Request
      */
     public function send(Builder $builder)
     {
-        $api = $this->manager->request('GET', "/api", [
-            'id' => $builder->getUid()->get('value'),
-            'type' => 'chapter'
+        $api = $this->manager->request('GET', '/api', [
+            'id'   => $builder->getUid()->get('value'),
+            'type' => 'chapter',
         ]);
 
         $parser = new Parser($this->manager);
