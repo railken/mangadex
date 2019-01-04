@@ -4,14 +4,14 @@ namespace Railken\Mangadex\Concerns;
 
 trait MangadexTags
 {
-    protected $availableTags = [
-        // Content
+    protected $availableContentTags = [
         9  => 'Ecchi',
         49 => 'Gore',
         50 => 'Sexual Violence',
         32 => 'Smut',
+    ];
 
-        // Format
+    protected $availableFormatTags = [
         1  => '4-Koma',
         42 => 'Adaptation',
         43 => 'Anthology',
@@ -24,8 +24,9 @@ trait MangadexTags
         21 => 'Oneshot',
         46 => 'User Created',
         44 => 'Web Comic',
+    ];
 
-        // Genre
+    protected $availableGenreTags = [
         2  => 'Action',
         3  => 'Adventure',
         5  => 'Comedy',
@@ -53,8 +54,9 @@ trait MangadexTags
         56 => 'Wuxia',
         37 => 'Yaoi',
         38 => 'Yuri',
+    ];
 
-        // Theme
+    protected $availableThemeTags = [
         57 => 'Aliens',
         58 => 'Animals',
         6  => 'Cooking',
@@ -94,6 +96,31 @@ trait MangadexTags
 
     public function getAvailableTags()
     {
-        return $this->availableTags;
+        return array_merge(
+            $this->getAvailableThemeTags(),
+            $this->getAvailableGenreTags(),
+            $this->getAvailableContentTags(),
+            $this->getAvailableFormatTags()
+        );
+    }
+
+    public function getAvailableThemeTags()
+    {
+        return $this->availableThemeTags;
+    }
+
+    public function getAvailableGenreTags()
+    {
+        return $this->availableGenreTags;
+    }
+
+    public function getAvailableFormatTags()
+    {
+        return $this->availableFormatTags;
+    }
+
+    public function getAvailableContentTags()
+    {
+        return $this->availableContentTags;
     }
 }
