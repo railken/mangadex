@@ -13,10 +13,9 @@ class ResourceTest extends TestCase
 
         $this->assertTrue($result->chapters->count() > 0);
 
-        $this->assertEquals("https://mangadex.org/title/31477", $result->url);
-        $this->assertEquals("31477", $result->uid);
+        $this->assertEquals('https://mangadex.org/title/31477', $result->url);
+        $this->assertEquals('31477', $result->uid);
         $this->assertEquals('Solo Leveling', $result->name);
         $this->assertEquals('Ongoing', $result->status);
-
     }
 }

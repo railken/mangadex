@@ -5,10 +5,10 @@ namespace Railken\Mangadex\API\Resource;
 use DateTime;
 use Illuminate\Support\Collection;
 use Railken\Bag;
-use Railken\Mangadex\MangadexApi;
-use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Railken\Mangadex\Concerns\MangadexStatus;
 use Railken\Mangadex\Concerns\MangadexTags;
+use Railken\Mangadex\MangadexApi;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 class Parser
 {
