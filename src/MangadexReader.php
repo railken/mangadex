@@ -82,14 +82,8 @@ abstract class MangadexReader
         $response = $this->client->request($method, $url, $params);
         $contents = $response->getBody()->getContents();
 
-        if ($response->getStatusCode() === 502 && $retry > 0) {
-            sleep(10);
-
-            return $this->request($method, $url, $data, $retry - 1);
-        }
-
-        if ($response->getStatusCode() === 500 && $retry > 0) {
-            sleep(30);
+        if (in_array($response->getStatusCode(), [500, 502, 503]) && $retry > 0) {
+            sleep(20);
 
             return $this->request($method, $url, $data, $retry - 1);
         }
