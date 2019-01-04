@@ -16,10 +16,10 @@ class SearchTest extends TestCase
             ->status('Ongoing')
             ->name('a')
             ->artist('a')
-            ->page(2)
+            ->page(1)
             ->get();
 
         $this->assertEquals(40, $result->results->count());
-        $this->assertEquals(2, $result->page);
+        $this->assertEquals(1, $result->page);
     }
 }
