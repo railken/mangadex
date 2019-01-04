@@ -14,7 +14,7 @@ class ScanTest extends TestCase
         $chapter = $result->chapters->values()->get(0);
 
         $api->scan($chapter->id)->get()->each(function ($scan) {
-            file_get_contents($scan->scan);
+            $this->assertTrue(filter_var($scan->scan, FILTER_VALIDATE_URL) !== false);
         });
     }
 }
