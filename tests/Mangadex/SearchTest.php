@@ -21,5 +21,15 @@ class SearchTest extends TestCase
 
         $this->assertEquals(40, $result->results->count());
         $this->assertEquals(1, $result->page);
+
+        $api = new MangadexApi();
+        $result = $api
+            ->search()
+            ->page(1)
+            ->get();
+
+        print_r($result->pages);
+
+        $this->assertTrue($result->pages > 500);
     }
 }
