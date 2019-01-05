@@ -53,9 +53,12 @@ class Parser
 
         $bag->set('page', $node->filter('.pagination > li.active a')->text());
 
-        $query = parse_url((string) $node->filter('.pagination > li:last-of-type a')->attr('href'), PHP_URL_QUERY);
-        parse_str($query, $params);
-        $bag->set('pages', $params['p']);
+        try {
+            $query = parse_url((string) $node->filter('.pagination > li:last-of-type a')->attr('href'), PHP_URL_QUERY);
+            parse_str($query, $params);
+            $bag->set('pages', $params['p']);
+        } catch (\Exception $e) {
+        }
 
         return $bag;
     }
