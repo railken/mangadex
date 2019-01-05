@@ -45,7 +45,7 @@ class Parser
             return $bag
                 ->set('uid', basename(dirname($title->attr('href'))))
                 ->set('name', html_entity_decode(trim($title->html())))
-                ->set('url', 'https://mangadex.org.com'.$title->attr('href'))
+                ->set('url', 'https://mangadex.org'.$title->attr('href'))
             ;
         })))->filter(function ($v) {
             return $v;
